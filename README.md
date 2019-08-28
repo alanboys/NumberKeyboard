@@ -185,16 +185,17 @@ public class NumberKeyboardView extends View {
         mWidthOfBp = mBpDelete.getWidth();
         mHeightOfBp = mBpDelete.getHeight();
 
-        mRectWidth = (mWidth - 70) / 6;   //每个按键左右间距10
-        mRectHeight = (mHeight - 100) / 14;//每个按键上下间距10
+        mRectWidth = (mWidth - 70) / 6;   //控制列数
+        mRectHeight = (mHeight - 100) / 14;//控制排数 没加一排数字加2
 
+        //一排有几列 每列的宽度
         xs[0] = mRectWidth / 2;
         xs[1] = (mRectWidth * 3) / 2 + 10;
         xs[2] = (mRectWidth * 5) / 2 + 20;
         xs[3] = (mRectWidth * 7) / 2 + 30;
         xs[4] = (mRectWidth * 9) / 2 + 40;
         xs[5] = (mRectWidth * 11) / 2 + 50;
-
+         //一共有几排 每排的高度
         ys[0] = mRectHeight / 2 + 25 + mHeight / 2;
         ys[1] = (mRectHeight * 3) / 2 + 35 + mHeight / 2;
         ys[2] = (mRectHeight * 5) / 2 + 45 + mHeight / 2;
@@ -331,10 +332,12 @@ public class NumberKeyboardView extends View {
         mPaint.setColor(Color.BLACK);
         mPaint.setTextSize(30);// 设置字体大小
         mPaint.setStrokeWidth(2);
+	//其实是将两个字放到两个宫格的位置
         canvas.drawText("删", xs[5], ys[0], mPaint);
         canvas.drawText("除", xs[5], ys[1], mPaint);
         canvas.drawText("清", xs[5], ys[2], mPaint);
         canvas.drawText("空", xs[5], ys[3], mPaint);
+	//控制大小写切换
         if(isBigWrite){
             canvas.drawText("大", xs[5], ys[4], mPaint);
             canvas.drawText("写", xs[5], ys[5], mPaint);
@@ -372,7 +375,7 @@ public class NumberKeyboardView extends View {
                             } else {
                                 isBigWrite = true;
                             }
-                            invalidate();
+                            invalidate();//大小写切换时刷新页面
                         } else {
                             onNumberClickListener.onNumberReturn(number);
                         }
@@ -398,6 +401,7 @@ public class NumberKeyboardView extends View {
         type = -1;
     }
 
+   //将每个位置赋值为要输入的数字、字母
     private void handleDown(float x, float y) {
         if (y < mHeight / 2) {
             return;
@@ -536,21 +540,21 @@ public class NumberKeyboardView extends View {
                 y2 = mHeight / 2 + 40 + 4 * mRectHeight;
                 clickY = ys[3];
                 number = isBigWrite ? "h" : "H";
-            } else if (y >= mHeight / 2 + 50 + 4 * mRectHeight && y <= mHeight / 2 + 50 + 5 * mRectHeight) { //第四排()
+            } else if (y >= mHeight / 2 + 50 + 4 * mRectHeight && y <= mHeight / 2 + 50 + 5 * mRectHeight) { //第5排()
                 x1 = 30 + 2 * mRectWidth;
                 y1 = mHeight / 2 + 50 + 4 * mRectHeight;
                 x2 = 30 + 3 * mRectWidth;
                 y2 = mHeight / 2 + 50 + 5 * mRectHeight;
                 clickY = ys[4];
                 number = isBigWrite ? "m" : "M";
-            } else if (y >= mHeight / 2 + 60 + 5 * mRectHeight && y <= mHeight / 2 + 60 + 6 * mRectHeight) { //第四排()
+            } else if (y >= mHeight / 2 + 60 + 5 * mRectHeight && y <= mHeight / 2 + 60 + 6 * mRectHeight) { //第6排()
                 x1 = 30 + 2 * mRectWidth;
                 y1 = mHeight / 2 + 60 + 5 * mRectHeight;
                 x2 = 30 + 3 * mRectWidth;
                 y2 = mHeight / 2 + 60 + 6 * mRectHeight;
                 clickY = ys[5];
                 number = isBigWrite ? "r" : "R";
-            } else if (y >= mHeight / 2 + 70 + 6 * mRectHeight && y <= mHeight / 2 + 70 + 7 * mRectHeight) { //第四排()
+            } else if (y >= mHeight / 2 + 70 + 6 * mRectHeight && y <= mHeight / 2 + 70 + 7 * mRectHeight) { //第7排()
                 x1 = 30 + 2 * mRectWidth;
                 y1 = mHeight / 2 + 70 + 6 * mRectHeight;
                 x2 = 30 + 3 * mRectWidth;
@@ -588,21 +592,21 @@ public class NumberKeyboardView extends View {
                 y2 = mHeight / 2 + 40 + 4 * mRectHeight;
                 clickY = ys[3];
                 number = isBigWrite ? "i" : "I";
-            } else if (y >= mHeight / 2 + 50 + 4 * mRectHeight && y <= mHeight / 2 + 50 + 5 * mRectHeight) { //第四排()
+            } else if (y >= mHeight / 2 + 50 + 4 * mRectHeight && y <= mHeight / 2 + 50 + 5 * mRectHeight) { //第5排()
                 x1 = 40 + 3 * mRectWidth;
                 y1 = mHeight / 2 + 50 + 4 * mRectHeight;
                 x2 = 40 + 4 * mRectWidth;
                 y2 = mHeight / 2 + 50 + 5 * mRectHeight;
                 clickY = ys[4];
                 number = isBigWrite ? "n" : "N";
-            } else if (y >= mHeight / 2 + 60 + 5 * mRectHeight && y <= mHeight / 2 + 60 + 6 * mRectHeight) { //第四排()
+            } else if (y >= mHeight / 2 + 60 + 5 * mRectHeight && y <= mHeight / 2 + 60 + 6 * mRectHeight) { //第6排()
                 x1 = 40 + 3 * mRectWidth;
                 y1 = mHeight / 2 + 60 + 5 * mRectHeight;
                 x2 = 40 + 4 * mRectWidth;
                 y2 = mHeight / 2 + 60 + 6 * mRectHeight;
                 clickY = ys[5];
                 number = isBigWrite ? "s" : "S";
-            } else if (y >= mHeight / 2 + 70 + 6 * mRectHeight && y <= mHeight / 2 + 70 + 7 * mRectHeight) { //第四排()
+            } else if (y >= mHeight / 2 + 70 + 6 * mRectHeight && y <= mHeight / 2 + 70 + 7 * mRectHeight) { //第7排()
                 x1 = 40 + 3 * mRectWidth;
                 y1 = mHeight / 2 + 70 + 6 * mRectHeight;
                 x2 = 40 + 4 * mRectWidth;
